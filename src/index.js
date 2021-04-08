@@ -2,13 +2,13 @@ import React from "react"
 import ReactDOM from "react-dom"
 import TodoContainer from "./components/TodoContainer/TodoContainer"
 import "./index.css";
-import { BrowserRouter } from "react-router-dom"
+import { HashRouter as Router } from "react-router-dom"
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <Router>
       <TodoContainer />
-    </BrowserRouter>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 )
