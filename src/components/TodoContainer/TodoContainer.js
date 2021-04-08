@@ -22,7 +22,7 @@ export default function TodoContainer(props) {
     TodosService.persistTodos();
   }, [todos])
 
-  function handleChangeProps(id) {
+  function toggleTodo(id) {
     console.log("clicked", id);
     setTodos(TodosService.toggleTodo(id));
   };
@@ -60,7 +60,7 @@ export default function TodoContainer(props) {
               />
               <TodosList
                 todos={todos}
-                handleChangeProps={handleChangeProps}
+                toggleTodo={toggleTodo}
                 deleteTodo={deleteTodo}
                 updateTodoTitle={updateTodoTitle}
               />

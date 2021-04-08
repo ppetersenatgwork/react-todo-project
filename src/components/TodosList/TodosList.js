@@ -8,7 +8,7 @@ export default function TodosList(props) {
         <TodoItem
           key={todo.id}
           todo={todo}
-          handleChangeProps={props.handleChangeProps}
+          toggleTodo={props.toggleTodo}
           deleteTodo={props.deleteTodo}
           updateTodoTitle={props.updateTodoTitle}
         />

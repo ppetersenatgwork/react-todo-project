@@ -42,7 +42,7 @@ export default function TodoItem(props) {
           type="checkbox"
           className={styles.checkbox}
           checked={completed}
-          onChange={() => props.handleChangeProps(id)}
+          onChange={() => props.toggleTodo(id)}
         />
         <button
           onClick={() => props.deleteTodo(id)}
