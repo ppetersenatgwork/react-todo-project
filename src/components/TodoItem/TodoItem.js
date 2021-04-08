@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styles from "./TodoItem.module.css"
-import { FaTrash } from "react-icons/fa"
+import { FaTrash, FaRegEdit } from "react-icons/fa"
 
 export default function TodoItem(props) {
   const [editing, setEditing] = useState(false);
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if(editing)inputRef.current.focus();
+  }, [editing]);
 
   const { completed, id, title } = props.todo
 
@@ -21,7 +27,11 @@ export default function TodoItem(props) {
 
   let finishEditing = event => {
     console.log("Finished editing", event.key);
-    if (event.key === "Enter") {
+    if (event.key) {
+      if (event.key === "Enter") {
+        setEditing(false);
+      }
+    } else {
       setEditing(false);
     }
   }
@@ -37,17 +47,19 @@ export default function TodoItem(props) {
 
   return (
     <li className={styles.item}>
-      <div onDoubleClick={handleEditing} style={viewMode}>
-        <input
-          type="checkbox"
-          className={styles.checkbox}
-          checked={completed}
-          onChange={() => props.toggleTodo(id)}
-        />
+      <div
+        onClick={() => props.toggleTodo(id)}
+        onDoubleClick={handleEditing}
+        style={viewMode}>
         <button
           onClick={() => props.deleteTodo(id)}
           className={styles.button}>
           <FaTrash style={{ color: "orangered", fontSize: "16px" }} />
+        </button>
+        <button
+          onClick={() => handleEditing()}
+          className={styles.button}>
+          <FaRegEdit style={{ color: "black", fontSize: "16px" }} />
         </button>
         <span style={completed ? completedStyle : null}>
           {title}
@@ -55,6 +67,7 @@ export default function TodoItem(props) {
       </div>
       <input
         type="text"
+        ref={inputRef}
         style={editMode}
         className={styles.textInput}
         value={title}
@@ -62,6 +75,7 @@ export default function TodoItem(props) {
           props.updateTodoTitle(e.target.value, id)
         }}
         onKeyDown={finishEditing}
+        onBlur={finishEditing}
       />
     </li>
   );
