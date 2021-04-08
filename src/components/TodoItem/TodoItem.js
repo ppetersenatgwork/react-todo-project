@@ -8,7 +8,7 @@ export default function TodoItem(props) {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    if(editing)inputRef.current.focus();
+    if (editing) inputRef.current.focus();
   }, [editing]);
 
   const { completed, id, title } = props.todo
@@ -20,12 +20,18 @@ export default function TodoItem(props) {
     textDecoration: "line-through",
   }
 
-  let handleEditing = () => {
+  const handleToggle = () => {
+    if (!editing) {
+      props.toggleTodo(id);
+    }
+  }
+
+  const handleEditing = () => {
     console.log("edit mode activated");
     setEditing(true);
   }
 
-  let finishEditing = event => {
+  const finishEditing = event => {
     console.log("Finished editing", event.key);
     if (event.key) {
       if (event.key === "Enter") {
@@ -47,23 +53,27 @@ export default function TodoItem(props) {
 
   return (
     <li className={styles.item}>
-      <div
-        onClick={() => props.toggleTodo(id)}
-        onDoubleClick={handleEditing}
-        style={viewMode}>
-        <button
-          onClick={() => props.deleteTodo(id)}
-          className={styles.button}>
-          <FaTrash style={{ color: "orangered", fontSize: "16px" }} />
-        </button>
-        <button
-          onClick={() => handleEditing()}
-          className={styles.button}>
-          <FaRegEdit style={{ color: "black", fontSize: "16px" }} />
-        </button>
-        <span style={completed ? completedStyle : null}>
-          {title}
-        </span>
+      <div style={{ display: 'flex' }}>
+        <div
+          onClick={() => handleToggle()}
+          onDoubleClick={handleEditing}
+          style={viewMode}>
+          <span style={completed ? completedStyle : null}>
+            {title}
+          </span>
+        </div>
+        <div style={{ marginLeft: 'auto', marginTop: 'auto', display: editing ? 'none' : 'flex' }}>
+          <button
+            onClick={() => handleEditing()}
+            className={styles.button}>
+            <FaRegEdit style={{ color: "black", fontSize: "16px" }} />
+          </button>
+          <button
+            onClick={() => props.deleteTodo(id)}
+            className={styles.button}>
+            <FaTrash style={{ color: "orangered", fontSize: "16px" }} />
+          </button>
+        </div>
       </div>
       <input
         type="text"
