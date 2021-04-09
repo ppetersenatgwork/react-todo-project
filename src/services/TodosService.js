@@ -1,24 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 
-class TodosService {
+export default class TodosService {
     static get TODO_URL() { return "https://jsonplaceholder.typicode.com/todos?_limit=10"; }
-    // static todos = [
-    //     {
-    //         id: uuidv4(),
-    //         title: "Setup development environment",
-    //         completed: true
-    //     },
-    //     {
-    //         id: uuidv4(),
-    //         title: "Develop website and add content",
-    //         completed: false
-    //     },
-    //     {
-    //         id: uuidv4(),
-    //         title: "Deploy to live server",
-    //         completed: false
-    //     }
-    // ];
+    
     static todos;
 
     static async getTodos() {
@@ -82,5 +66,3 @@ class TodosService {
         localStorage.setItem("todos", JSON.stringify(this.todos));
     }
 }
-
-export default TodosService
