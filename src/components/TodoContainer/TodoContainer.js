@@ -3,7 +3,7 @@ import TodosList from "../TodosList/TodosList"
 import Header from "../Header/Header"
 import InputTodo from "../InputTodo/InputTodo"
 import TodosService from "../../services/TodosService"
-import { Route, Switch } from "react-router-dom"
+import { Redirect, Route, Switch } from "react-router-dom"
 import About from "../../pages/About"
 import NotMatch from "../../pages/NotMatch"
 import Navbar from "../Navbar/Navbar"
@@ -67,6 +67,7 @@ export default function TodoContainer(props) {
             </div>
           </div>
         </Route>
+        <Redirect exact from="/about" to="/about/about-app" />
         <Route path="/about">
           <About />
         </Route>
