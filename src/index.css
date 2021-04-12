@@ -104,7 +104,7 @@ body {
   width: 100%;
 }
 
-a {
+ul a {
   display: block;
   padding: 10px 40px;
   text-decoration: none;

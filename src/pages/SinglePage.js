@@ -5,12 +5,12 @@ import AboutService from "../services/AboutService"
 
 export default function SinglePage() {
     const { slug } = useParams();
-
-    if(!AboutService.hasAbout(slug)) {
-        return <NotMatch />;
-    }
     
     const aboutContent = AboutService.getAbout(slug);
+
+    if(!aboutContent) {
+        return <NotMatch />;
+    }
 
     const { title, description } = aboutContent;
 
