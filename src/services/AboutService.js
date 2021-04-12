@@ -13,7 +13,7 @@ export default class AboutService {
                 slug: "about-author",
                 title: "About the Author",
                 description:
-                    <>This app was developed by Ibas Majid and implemented by Patrick Petersen following the instructions provided for the <a href={"https://ibaslogic.com/react-tutorial-for-beginners/"}>react-tutorial-for-beginners</a>. This version of the application features some enhancements developed by Patrick Petersen.</>,
+                    <>This app was developed by Ibas Majid and implemented by Patrick Petersen following the instructions provided for the <a target="_blank" rel="noopener noreferrer" href={"https://ibaslogic.com/react-tutorial-for-beginners/"}>react-tutorial-for-beginners</a>. This version of the application features some enhancements developed by Patrick Petersen.</>,
             },
         ]
     }
